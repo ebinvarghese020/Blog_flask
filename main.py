@@ -5,6 +5,7 @@ import requests
 
 app = Flask(__name__)
 
+
 response = requests.get(url=os.environ.get("URL"))
 response.raise_for_status()
 
