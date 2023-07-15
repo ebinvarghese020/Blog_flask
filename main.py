@@ -1,12 +1,9 @@
-import os
-
 from flask import *
 import requests
 
 app = Flask(__name__)
 
-
-response = requests.get(url=os.environ.get("URL"))
+response = requests.get(url="https://api.npoint.io/c790b4d5cab58020d391")
 response.raise_for_status()
 
 data = response.json()
@@ -29,9 +26,20 @@ def about():
     return render_template('about.html')
 
 
-@app.route("/contact")
+@app.route("/contact",  methods=['GET', 'POST'])
 def contact():
+    if request.method == "POST":
+        pass
+
     return render_template("contact.html")
+
+
+@app.route("/mail", methods=['POST'])
+def mail():
+    if request.method == "POST":
+        return "ok"
+    else:
+        return "ERROR"
 
 
 @app.route("/post/<int:id1>")
